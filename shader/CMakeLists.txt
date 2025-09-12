@@ -1,11 +1,15 @@
 cmake_minimum_required(VERSION 3.22)
 message(STATUS "In shader CMAKE")
 
-vulkan_compile_shader(
-    INFILE shader.comp
-    OUTFILE shader.hpp
-    NAMESPACE "shader"
-)
+if(USE_VULKAN_KOMPUTE)
+    vulkan_compile_shader(
+        INFILE shader.comp
+        OUTFILE shader.hpp
+        NAMESPACE "shader"
+    )
+else()
+    file(WRITE shader.hpp "#pragma once\n")
+endif()
 
 add_custom_target(compile_shaders DEPENDS shader.hpp)
 

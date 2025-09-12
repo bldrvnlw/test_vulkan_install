@@ -1,0 +1,4 @@
+
+
+#cmakedefine USE_VULKAN_KOMPUTE
+

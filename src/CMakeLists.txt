@@ -1,5 +1,10 @@
 cmake_minimum_required(VERSION 3.22)
 message(STATUS "In source CMAKE")
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
+configure_file(testapp_config.h.in testapp_config.h)
 add_executable(my_vulkan_app main.cpp)
-target_link_libraries(my_vulkan_app PRIVATE shader kompute::kompute)
+target_link_libraries(my_vulkan_app PRIVATE shader)
+if (USE_VULKAN_KOMPUTE)
+    target_link_libraries(my_vulkan_app PRIVATE kompute::kompute)
+endif()
 
